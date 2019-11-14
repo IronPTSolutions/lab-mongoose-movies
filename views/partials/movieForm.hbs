@@ -1,0 +1,50 @@
+{{#if movie.isNew }}
+  <form action="/movies" method="POST">
+{{else}}
+  <form action="/movies/{{movie.id}}" method="POST">
+{{/if}}
+
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input name="title" type="text" class="form-control {{#if error.title }}is-invalid{{/if}}" id="title"
+      placeholder="Enter name" value="{{ movie.title }}">
+
+    {{#if error.title}}
+    <div class="invalid-feedback">
+      {{error.title.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="genre">Genre</label>
+    <input name="genre" type="text" class="form-control {{#if error.genre }}is-invalid{{/if}}" id="genre"
+      placeholder="Genre" value="{{ movie.genre }}">
+
+    {{#if error.genre}}
+    <div class="invalid-feedback">
+      {{error.genre.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="plot">Plot</label>
+    <input name="plot" type="text" class="form-control {{#if error.plot }}is-invalid{{/if}}"
+      id="plot" placeholder="plot" value="{{ movie.plot }}">
+
+    {{#if error.plot}}
+    <div class="invalid-feedback">
+      {{error.plot.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    {{#if movie.isNew }}
+      Create
+    {{else}}
+      Update
+    {{/if}}
+  </button>
+</form>

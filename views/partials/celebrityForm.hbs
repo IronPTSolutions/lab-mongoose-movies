@@ -1,0 +1,50 @@
+{{#if celebrity.isNew }}
+  <form action="/celebrities" method="POST">
+{{else}}
+  <form action="/celebrities/{{celebrity.id}}" method="POST">
+{{/if}}
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input name="name" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}" id="name"
+      placeholder="Enter name" value="{{ celebrity.name }}">
+
+    {{#if error.name}}
+    <div class="invalid-feedback">
+      {{error.name.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="occupation">Occupation</label>
+    <input name="occupation" type="text" class="form-control {{#if error.occupation }}is-invalid{{/if}}" id="occupation"
+      placeholder="Occupation" value="{{ celebrity.occupation }}">
+
+    {{#if error.occupation}}
+    <div class="invalid-feedback">
+      {{error.occupation.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="catchPhrase">CatchPhrase</label>
+    <input name="catchPhrase" type="text" class="form-control {{#if error.catchPhrase }}is-invalid{{/if}}"
+      id="catchPhrase" placeholder="catchPhrase" value="{{ celebrity.catchPhrase }}">
+
+    {{#if error.catchPhrase}}
+    <div class="invalid-feedback">
+      {{error.catchPhrase.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    {{#if celebrity.isNew }}
+      Create
+    {{else}}
+      Update
+    {{/if}}
+  </button>
+</form>
