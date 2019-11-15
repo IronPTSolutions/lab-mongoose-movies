@@ -1,4 +1,5 @@
 const Movie = require('../models/movie.model');
+const Comment = require('../models/comment.model');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
 
@@ -12,6 +13,7 @@ module.exports.index = (_, res, next) => {
 
 module.exports.show = (req, res, next) => {
   Movie.findById(req.params.id)
+    .populate('comments')
     .then(movie => {
       if (movie) {
         res.render('movies/show', { movie })

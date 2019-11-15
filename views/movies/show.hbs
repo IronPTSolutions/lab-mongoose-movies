@@ -1,3 +1,5 @@
+<h1>{{ movie.titleGenre }}</h1>
+
 <h2>{{ movie.title }}</h2>
 
 <dl>
@@ -7,3 +9,21 @@
   <dt>Catch Plot:</dt>
   <dd>{{ movie.plot }}</dd>
 </dl>
+
+<h4>Comments</h4> 
+
+<form method="POST" action="/movies/{{movie.id}}/comments">
+  <input name="title"/>
+  <textarea name="body"></textarea>
+  <button type="Submit">Add Comment</button>
+</form>
+
+{{#each movie.comments as |comment|}}
+  <div>{{comment.title}}</div>
+  <div>{{comment.body}}</div>
+
+  <form method="POST" action="/movies/{{comment.movie}}/comments/{{comment.id}}/delete">
+    <button type="submit" class="btn btn-danger btn-sm">Delete comment</button>
+  </form>
+  <hr>
+{{/each}}

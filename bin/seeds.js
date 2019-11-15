@@ -24,12 +24,12 @@ Celebrity.deleteMany({})
   .then(() => {
     console.log('Celebrities deleted')
   })
-  .catch(err => console.error(err))
-
-Celebrity.create(celebrities)
-  .then(createdCelebrities => {
-    createdCelebrities.forEach(celebrity => {
-      console.log(`Celebrity created - ${celebrity.name}`)
-    })
+  .then(() => {
+    return Celebrity.create(celebrities)
+      .then(createdCelebrities => {
+        createdCelebrities.forEach(celebrity => {
+          console.log(`Celebrity created - ${celebrity.name}`)
+        })
+      })
   })
   .catch(err => console.error(err))

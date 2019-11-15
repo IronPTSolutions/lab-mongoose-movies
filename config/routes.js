@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const celebritiesController = require('../controllers/celebrities.controller');
 const moviesController = require('../controllers/movies.controller');
+const commentsController = require('../controllers/comments.controller');
 
 router.get('/', (_, res) => res.redirect('/celebrities'))
 
@@ -14,7 +15,7 @@ router.post('/celebrities/:id/delete', celebritiesController.delete)
 router.get('/celebrities/:id/edit', celebritiesController.edit)
 router.post('/celebrities/:id', celebritiesController.update)
 
-// Moviews CRUD
+// Movies CRUD
 router.get('/movies', moviesController.index)
 router.get('/movies/new', moviesController.new)
 router.get('/movies/:id', moviesController.show)
@@ -22,5 +23,9 @@ router.post('/movies', moviesController.create)
 router.post('/movies/:id/delete', moviesController.delete)
 router.get('/movies/:id/edit', moviesController.edit)
 router.post('/movies/:id', moviesController.update)
+
+// Movie Comments CRUD
+router.post('/movies/:id/comments', commentsController.create)
+router.post('/movies/:id/comments/:commentId/delete', commentsController.delete)
 
 module.exports = router;
